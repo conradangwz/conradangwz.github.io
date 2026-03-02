@@ -468,6 +468,7 @@ nav {
     display: inline-flex;
     align-items: center;
     padding: var(--space-1) var(--space-3);
+    margin-top: var(--space-4);
     background: rgba(200, 245, 66, 0.1);
     border: 1px solid rgba(200, 245, 66, 0.3);
     border-radius: var(--radius-full);
