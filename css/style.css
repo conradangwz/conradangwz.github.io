@@ -1414,6 +1414,7 @@ nav {
 ===================== */
 footer {
     border-top: 1px solid var(--color-border);
+    background-color: var(--color-bg);
     padding-block: var(--space-8);
 }
 

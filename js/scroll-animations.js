@@ -37,8 +37,6 @@
     '#contact .section-header',
     '#contact .contact-info',
     '#contact .contact-form-card',
-    // Footer
-    'footer .footer-inner',
   ];
 
   const els = document.querySelectorAll(SELECTORS.join(', '));
