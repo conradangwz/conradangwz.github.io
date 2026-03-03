@@ -3,6 +3,7 @@
    - Hero name:      char-by-char scramble reveal
    - Hero tagline:   typewriter cursor effect
    - Section titles: scramble reveal on scroll
+                     + re-split on mobile/desktop resize
 ===================================================== */
 
 (function () {
@@ -23,24 +24,32 @@
   }
 
   /* ── Split a heading's child nodes into .char spans ──
-     Handles: plain text nodes, <span class="accent">, <br>
-     Returns the container (mutated in place).              */
-  function splitToChars(el, charClass, accentClass) {
-    el.setAttribute('aria-label', el.textContent.trim());
+     injectMobileBreak: insert a <br> before the first
+     accent span when on mobile — section titles only.   */
+  function splitToChars(el, charClass, accentClass, injectMobileBreak) {
+    const isMobile = injectMobileBreak && window.innerWidth <= 768;
 
-    const nodes = [...el.childNodes];
+    // Read original text structure from the stored source,
+    // not from the already-split DOM.
+    const sourceNodes = el._sourceNodes;
     el.innerHTML = '';
 
-    nodes.forEach(node => {
-      if (node.nodeName === 'BR') {
+    let accentBrInserted = false;
+
+    sourceNodes.forEach(node => {
+      if (node.type === 'br') {
         el.appendChild(document.createElement('br'));
         return;
       }
 
-      const isAccent = node.nodeType === Node.ELEMENT_NODE
-        && node.classList.contains('accent');
+      const isAccent = node.isAccent;
 
-      [...node.textContent].forEach(ch => {
+      if (isAccent && isMobile && !accentBrInserted) {
+        el.appendChild(document.createElement('br'));
+        accentBrInserted = true;
+      }
+
+      [...node.text].forEach(ch => {
         const span = document.createElement('span');
         if (ch === ' ') {
           span.className = `${charClass} ${charClass}--space`;
@@ -52,6 +61,20 @@
         }
         el.appendChild(span);
       });
+    });
+  }
+
+  /* ── Store original node structure before any splitting ── */
+  function storeSource(el) {
+    el.setAttribute('aria-label', el.textContent.trim());
+    el._sourceNodes = [...el.childNodes].map(node => {
+      if (node.nodeName === 'BR') return { type: 'br' };
+      return {
+        type: 'text',
+        text: node.textContent,
+        isAccent: node.nodeType === Node.ELEMENT_NODE
+          && node.classList.contains('accent'),
+      };
     });
   }
 
@@ -81,13 +104,16 @@
 
   /* ─────────────────────────────────────────
      1. HERO NAME — char split + scramble
+        No mobile BR — HTML already has <br>
+        between "Conrad" and "Ang".
      ───────────────────────────────────────── */
   function initHeroName() {
     const el = document.querySelector('.hero-name');
     if (!el) return;
 
     el.style.cssText += 'animation:none;opacity:1';
-    splitToChars(el, 'ta-char', 'ta-char--accent');
+    storeSource(el);
+    splitToChars(el, 'ta-char', 'ta-char--accent', false);
 
     el.querySelectorAll('.ta-char:not(.ta-char--space)').forEach((span, i) => {
       Object.assign(span.style, { opacity: '0', transform: 'translateY(0.4em)', transition: 'none' });
@@ -134,16 +160,20 @@
 
   /* ─────────────────────────────────────────
      3. SECTION TITLES — scramble on scroll
+        + re-split when crossing 768px breakpoint
      ───────────────────────────────────────── */
   function initSectionTitles() {
     const titles = document.querySelectorAll('.section-title');
     if (!titles.length) return;
 
+    // Store original source nodes first, then split
     titles.forEach(title => {
-      splitToChars(title, 'st-char', 'st-char--accent');
+      storeSource(title);
+      splitToChars(title, 'st-char', 'st-char--accent', true);
       title._animated = false;
     });
 
+    // Scroll reveal observer
     const observer = new IntersectionObserver(entries => {
       entries.forEach(({ isIntersecting, target }) => {
         if (!isIntersecting || target._animated) return;
@@ -160,6 +190,29 @@
     }, { threshold: 0.25 });
 
     titles.forEach(t => observer.observe(t));
+
+    // Re-split on resize when crossing the 768px breakpoint
+    // so the <br> is added on mobile and removed on desktop
+    let wasMobile = window.innerWidth <= 768;
+
+    window.addEventListener('resize', () => {
+      const isMobile = window.innerWidth <= 768;
+      if (isMobile === wasMobile) return; // only act on breakpoint crossings
+      wasMobile = isMobile;
+
+      titles.forEach(title => {
+        // Re-split with the correct mobile flag
+        splitToChars(title, 'st-char', 'st-char--accent', true);
+
+        // Re-apply visible state if this title was already animated
+        if (title._animated) {
+          title.querySelectorAll('.st-char:not(.st-char--space)').forEach(span => {
+            span.classList.add('visible');
+            span.textContent = span.dataset.target;
+          });
+        }
+      });
+    }, { passive: true });
   }
 
   /* ── Init ── */

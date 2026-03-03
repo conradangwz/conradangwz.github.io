@@ -1,0 +1,476 @@
+/* =====================================================
+   MOBILE STYLESHEET — Conrad Ang Portfolio
+   Breakpoints:
+     ≤ 768px  : tablets & large phones (primary mobile)
+     ≤ 480px  : small phones
+   Import AFTER style.css in <head>:
+     <link rel="stylesheet" href="css/mobile.css" />
+===================================================== */
+
+/* =====================
+   NAV
+===================== */
+@media (max-width: 768px) {
+  nav {
+    padding-block: var(--space-3);
+  }
+
+  .nav-links {
+    display: none;
+  }
+
+  .nav-logo {
+    font-size: var(--text-lg);
+  }
+}
+
+/* =====================
+   HERO
+===================== */
+@media (max-width: 768px) {
+  #hero {
+    padding-block: var(--space-16);
+    padding-top: calc(var(--space-16) + var(--space-8));
+    min-height: 100svh;
+  }
+
+  .hero-content {
+    padding-inline: var(--space-2);
+  }
+
+  .hero-label {
+    font-size: var(--text-xs);
+    letter-spacing: 0.12em;
+  }
+
+  .hero-label::before,
+  .hero-label::after {
+    width: var(--space-5);
+  }
+
+  /* Tighten the line-height so the <br> between
+     "Conrad" and "Ang" doesn't create a huge gap */
+  .hero-name {
+    font-size: clamp(2.6rem, 14vw, 4rem);
+    letter-spacing: -0.03em;
+    line-height: 1.0;
+  }
+
+  .hero-tagline {
+    font-size: var(--text-base);
+    max-width: 32ch;
+  }
+
+  .hero-pills {
+    gap: var(--space-2);
+  }
+
+  .pill {
+    font-size: 0.65rem;
+    padding: var(--space-1) var(--space-3);
+  }
+
+  .hero-cta {
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-3);
+  }
+
+  .btn {
+    width: 100%;
+    max-width: 20rem;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-name {
+    font-size: clamp(2.2rem, 16vw, 3.2rem);
+    line-height: 1.0;
+  }
+
+  .hero-tagline {
+    font-size: var(--text-sm);
+  }
+
+  .pill {
+    font-size: 0.6rem;
+    padding: 0.15rem var(--space-2);
+  }
+}
+
+/* =====================
+   SECTION (global)
+   Section title accent word drops to its own line
+   via a <br> injected by text-animations.js at
+   split-time — no CSS hacks needed here.
+===================== */
+@media (max-width: 768px) {
+  .section {
+    padding-block: var(--space-12);
+  }
+
+  .section-title {
+    font-size: clamp(1.6rem, 6vw, 2rem);
+    line-height: 1.2;
+  }
+
+  .section-header {
+    margin-bottom: var(--space-8);
+  }
+}
+
+/* =====================
+   ABOUT
+===================== */
+@media (max-width: 768px) {
+  .about-layout {
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+  }
+
+  /*
+    Child order in HTML:
+      1. .about-pic-wrap
+      2. .about-intro-label
+      3. .about-intro-name  (the <br> live inside here after JS)
+      4. hr.about-divider
+
+    Grid: photo in col 1 spanning all rows,
+    text items stacked in col 2.
+  */
+  .about-intro {
+    position: static;
+    display: grid;
+    grid-template-columns: 7rem 1fr;
+    grid-template-rows: auto auto auto;
+    column-gap: var(--space-5);
+    row-gap: 0;
+    align-items: start;
+  }
+
+  .about-pic-wrap {
+    grid-column: 1;
+    grid-row: 1 / 4;
+    width: 7rem;
+    height: 7rem;
+    margin-bottom: 0;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    align-self: start;
+  }
+
+  .about-profile-pic {
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    object-position: center top;
+  }
+
+  .about-intro-label {
+    grid-column: 2;
+    grid-row: 1;
+    margin-bottom: var(--space-2);
+    font-size: var(--text-xs);
+    padding-top: var(--space-1);
+  }
+
+  .about-intro-name {
+    grid-column: 2;
+    grid-row: 2;
+    font-size: var(--text-lg);
+    line-height: 1.15;
+    margin-bottom: var(--space-3);
+  }
+
+  .about-divider {
+    grid-column: 2;
+    grid-row: 3;
+    width: var(--space-8);
+    align-self: start;
+  }
+
+  .about-body p {
+    font-size: var(--text-sm);
+    padding-left: var(--space-4);
+    line-height: 1.8;
+  }
+}
+
+@media (max-width: 480px) {
+  .about-intro {
+    grid-template-columns: 5.5rem 1fr;
+    column-gap: var(--space-4);
+  }
+
+  .about-pic-wrap {
+    width: 5.5rem;
+    height: 5.5rem;
+  }
+
+  .about-intro-name {
+    font-size: var(--text-md);
+  }
+}
+
+/* =====================
+   EXPERIENCE — TIMELINE
+===================== */
+@media (max-width: 768px) {
+  .timeline {
+    max-width: 100%;
+  }
+
+  .timeline-item {
+    grid-template-columns: 1.75rem 1fr;
+    gap: 0 var(--space-4);
+  }
+
+  .timeline-node {
+    width: 1rem;
+    height: 1rem;
+    margin-top: 1rem;
+  }
+
+  .timeline-trigger {
+    padding: var(--space-4) var(--space-4);
+    gap: var(--space-3);
+  }
+
+  .timeline-role {
+    font-size: var(--text-md);
+  }
+
+  .timeline-company {
+    font-size: var(--text-sm);
+  }
+
+  .timeline-date {
+    font-size: 0.65rem;
+  }
+
+  .timeline-chevron {
+    font-size: var(--text-base);
+  }
+
+  .timeline-panel-inner {
+    padding: var(--space-4) var(--space-4);
+  }
+
+  .timeline-panel .exp-bullets li {
+    font-size: var(--text-xs);
+    line-height: 1.65;
+  }
+
+  .exp-badge,
+  .timeline-trigger .exp-badge {
+    font-size: 0.6rem;
+    padding: 1px var(--space-2);
+  }
+
+  .timeline-right {
+    padding-bottom: var(--space-4);
+  }
+}
+
+@media (max-width: 480px) {
+  .timeline-item {
+    grid-template-columns: 1.4rem 1fr;
+    gap: 0 var(--space-3);
+  }
+
+  .timeline-node {
+    width: 0.875rem;
+    height: 0.875rem;
+  }
+
+  .timeline-trigger {
+    padding: var(--space-3) var(--space-3);
+  }
+
+  .timeline-role {
+    font-size: var(--text-base);
+  }
+}
+
+/* =====================
+   PROJECTS — CAROUSEL
+===================== */
+@media (max-width: 768px) {
+  .project-card {
+    min-width: clamp(16rem, 82vw, 22rem);
+    max-width: clamp(16rem, 82vw, 22rem);
+    padding: var(--space-6);
+    gap: var(--space-3);
+  }
+
+  .project-title {
+    font-size: var(--text-md);
+  }
+
+  .project-desc {
+    font-size: var(--text-xs);
+    line-height: 1.65;
+  }
+
+  .project-icon {
+    width: var(--space-10);
+    height: var(--space-10);
+    font-size: var(--text-lg);
+  }
+
+  .carousel-controls {
+    margin-top: var(--space-6);
+    gap: var(--space-5);
+  }
+
+  .carousel-btn {
+    width: 2.25rem;
+    height: 2.25rem;
+    font-size: var(--text-base);
+  }
+
+  .projects-carousel-wrapper::before,
+  .projects-carousel-wrapper::after {
+    width: 2.5rem;
+  }
+
+  .projects-carousel {
+    padding-inline: var(--space-6);
+    gap: var(--space-4);
+  }
+}
+
+@media (max-width: 480px) {
+  .project-card {
+    min-width: clamp(15rem, 88vw, 18rem);
+    max-width: clamp(15rem, 88vw, 18rem);
+    padding: var(--space-5);
+  }
+
+  .projects-carousel {
+    padding-inline: var(--space-4);
+  }
+
+  .projects-carousel-wrapper::before,
+  .projects-carousel-wrapper::after {
+    width: 1.5rem;
+  }
+}
+
+/* =====================
+   RESUME
+===================== */
+@media (max-width: 768px) {
+  .resume-card {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-5);
+    padding: var(--space-6);
+  }
+
+  .resume-card .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .resume-filename {
+    font-size: var(--text-md);
+  }
+}
+
+/* =====================
+   CONTACT
+===================== */
+@media (max-width: 768px) {
+  .contact-wrapper {
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+  }
+
+  .contact-info {
+    padding-top: 0;
+    gap: var(--space-6);
+  }
+
+  .contact-info-sub {
+    font-size: var(--text-xs);
+    line-height: 1.8;
+  }
+
+  .contact-form-card {
+    padding: var(--space-6);
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .contact-availability {
+    font-size: 0.65rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .contact-form-card {
+    padding: var(--space-5) var(--space-4);
+  }
+
+  .btn-send {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .form-submit-row {
+    flex-direction: column-reverse;
+    align-items: stretch;
+    gap: var(--space-3);
+  }
+
+  .form-status {
+    text-align: center;
+  }
+}
+
+/* =====================
+   FOOTER
+===================== */
+@media (max-width: 480px) {
+  .footer-inner {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: var(--space-2);
+  }
+}
+
+/* =====================
+   LAYOUT / CONTAINER
+===================== */
+@media (max-width: 768px) {
+  :root {
+    --page-padding: var(--space-5);
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --page-padding: var(--space-4);
+  }
+}
+
+/* =====================
+   REDUCED MOTION
+===================== */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
