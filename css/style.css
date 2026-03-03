@@ -1479,3 +1479,22 @@ footer {
 .hero-cta {
     animation-delay: 0.7s;
 }
+/* =====================================================
+   SCROLL ANIMATION ADDITIONS
+===================================================== */
+
+/* ── Nav: compact state on scroll ── */
+nav {
+    transition: padding-block 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+}
+
+nav.nav-scrolled {
+    padding-block: var(--space-3);
+    background: rgba(13, 7, 0, 0.96);
+    box-shadow: 0 1px 24px rgba(0, 0, 0, 0.5);
+}
+
+/* ── Active nav link ── */
+.nav-links a.nav-active {
+    color: var(--color-accent);
+}
