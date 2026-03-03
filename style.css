@@ -83,6 +83,15 @@ body {
     overflow-x: hidden;
 }
 
+/* Ensure all form elements inherit the font stack — browsers
+   do NOT inherit font on input/textarea/button by default */
+input,
+textarea,
+button,
+select {
+    font-family: var(--font-mono);
+}
+
 a {
     color: inherit;
     text-decoration: none;
@@ -161,6 +170,7 @@ nav {
 }
 
 .nav-links a {
+    font-family: var(--font-mono);
     font-size: var(--text-xs);
     letter-spacing: 0.1em;
     text-transform: uppercase;
@@ -213,6 +223,7 @@ nav {
 }
 
 .hero-label {
+    font-family: var(--font-mono);
     font-size: var(--text-xs);
     letter-spacing: 0.2em;
     text-transform: uppercase;
@@ -246,6 +257,7 @@ nav {
 }
 
 .hero-tagline {
+    font-family: var(--font-mono);
     font-size: var(--text-lg);
     color: var(--color-text-secondary);
     max-width: 40ch;
@@ -270,6 +282,7 @@ nav {
     padding: var(--space-2) var(--space-4);
     border: 1px solid var(--color-border);
     border-radius: var(--radius-full);
+    font-family: var(--font-mono);
     font-size: var(--text-xs);
     color: var(--color-text-secondary);
     background: var(--color-surface);
@@ -332,6 +345,7 @@ nav {
 }
 
 .section-number {
+    font-family: var(--font-mono);
     font-size: var(--text-xs);
     letter-spacing: 0.2em;
     text-transform: uppercase;
@@ -350,62 +364,104 @@ nav {
 /* =====================
     ABOUT
 ===================== */
-.about-grid {
+.about-layout {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 2fr;
     gap: var(--space-16);
     align-items: start;
 }
 
-.about-text p {
-    color: var(--color-text-secondary);
-    margin-bottom: var(--space-4);
-    line-height: 1.8;
+.about-intro {
+    position: sticky;
+    top: calc(var(--space-16) + var(--space-8));
 }
 
-.about-stats {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--space-4);
-}
 
-.stat-card {
-    background: var(--color-surface);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-lg);
-    padding: var(--space-6);
+.about-pic-wrap {
     position: relative;
+    display: block;
+    margin-bottom: var(--space-6);
+    border-radius: var(--radius-lg);
     overflow: hidden;
+    border: 1px solid var(--color-border);
     transition: border-color var(--transition-base);
 }
 
-.stat-card:hover {
+.about-intro:hover .about-pic-wrap {
     border-color: var(--color-accent);
 }
 
-.stat-card::after {
+/* Orange gradient fade at the bottom */
+.about-pic-wrap::after {
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(135deg, rgba(200, 245, 66, 0.05), transparent);
+    background: linear-gradient(to bottom, transparent 55%, rgba(255, 119, 0, 0.18));
     pointer-events: none;
+    border-radius: var(--radius-lg);
 }
 
-.stat-value {
-    font-family: var(--font-display);
-    font-size: var(--text-2xl);
-    font-weight: 800;
-    color: var(--color-accent);
-    line-height: 1;
-    margin-bottom: var(--space-2);
+.about-profile-pic {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+    filter: grayscale(25%);
+    transition: filter var(--transition-slow), transform var(--transition-slow);
 }
 
-.stat-label {
+.about-intro:hover .about-profile-pic {
+    filter: grayscale(0%);
+    transform: scale(1.04);
+}
+
+.about-intro-label {
+    font-family: var(--font-mono);
     font-size: var(--text-xs);
-    color: var(--color-text-secondary);
+    letter-spacing: 0.2em;
     text-transform: uppercase;
-    letter-spacing: 0.1em;
+    color: var(--color-accent);
+    margin-bottom: var(--space-4);
 }
+
+.about-intro-name {
+    font-family: var(--font-display);
+    font-size: var(--text-xl);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.2;
+    margin-bottom: var(--space-6);
+}
+
+.about-divider {
+    width: var(--space-12);
+    height: 2px;
+    background: linear-gradient(to right, var(--color-accent), transparent);
+    border: none;
+    margin: 0;
+}
+
+.about-body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+}
+
+.about-body p {
+    font-family: var(--font-mono);
+    color: var(--color-text-secondary);
+    line-height: 1.9;
+    font-size: var(--text-base);
+    padding-left: var(--space-6);
+    border-left: 1px solid var(--color-border);
+    transition: border-color var(--transition-base);
+}
+
+.about-body p:hover {
+    border-left-color: var(--color-accent);
+}
+
 
 /* =====================
     EXPERIENCE — TIMELINE
@@ -414,11 +470,9 @@ nav {
 .timeline {
     display: flex;
     flex-direction: column;
-    /* Max width so text stays readable */
     max-width: 52rem;
 }
 
-/* Each row = node column + content column */
 .timeline-item {
     display: grid;
     grid-template-columns: 2.5rem 1fr;
@@ -437,11 +491,9 @@ nav {
     width: 1.25rem;
     height: 1.25rem;
     flex-shrink: 0;
-    /* Vertically center with the trigger header text */
     margin-top: 0.9rem;
 }
 
-/* Outer ring — grows when active */
 .timeline-node-ring {
     position: absolute;
     inset: 0;
@@ -450,7 +502,6 @@ nav {
     transition: border-color var(--transition-base), transform var(--transition-base);
 }
 
-/* Inner dot */
 .timeline-node-dot {
     position: absolute;
     top: 50%;
@@ -463,7 +514,6 @@ nav {
     transition: background var(--transition-base), transform var(--transition-base);
 }
 
-/* Active / open state — node glows */
 .timeline-item.active .timeline-node-ring {
     border-color: var(--color-accent);
     box-shadow: 0 0 0 4px rgba(255, 119, 0, 0.12);
@@ -475,12 +525,10 @@ nav {
     transform: translate(-50%, -50%) scale(1);
 }
 
-/* Hover on un-opened items */
 .timeline-item:not(.active):hover .timeline-node-ring {
     border-color: var(--color-accent);
 }
 
-/* Vertical line connecting nodes */
 .timeline-connector {
     flex: 1;
     width: 1px;
@@ -491,7 +539,6 @@ nav {
     overflow: hidden;
 }
 
-/* Accent fill travels down the connector when panel is open */
 .timeline-item.active .timeline-connector::after {
     content: '';
     position: absolute;
@@ -526,20 +573,21 @@ nav {
     justify-content: space-between;
     gap: var(--space-4);
     text-align: left;
+    font-family: var(--font-mono);
     transition: border-color var(--transition-base), background var(--transition-base), transform var(--transition-base);
 }
 
 .timeline-trigger:hover {
     border-color: var(--color-accent);
-    background: var(--color-surface-alt);
+    background: var(--color-surface);
 }
 
 .timeline-item.active .timeline-trigger {
     border-color: var(--color-accent);
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
-    border-bottom-color: transparent;
-    background: var(--color-surface-alt);
+    border-bottom: none;
+    background: var(--color-surface);
 }
 
 .timeline-trigger-inner {
@@ -558,6 +606,7 @@ nav {
 }
 
 .timeline-date {
+    font-family: var(--font-mono);
     font-size: var(--text-xs);
     color: var(--color-text-secondary);
     border: 1px solid var(--color-border);
@@ -576,12 +625,13 @@ nav {
 }
 
 .timeline-company {
+    font-family: var(--font-mono);
     font-size: var(--text-base);
     color: var(--color-accent);
 }
 
-/* Chevron arrow rotates when open */
 .timeline-chevron {
+    font-family: var(--font-mono);
     font-size: var(--text-md);
     color: var(--color-text-secondary);
     transition: transform var(--transition-base), color var(--transition-base);
@@ -599,6 +649,14 @@ nav {
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    padding-bottom: 1px;
+}
+
+/* Before JS fires, keep the initially-active panel open via CSS.
+   JS overrides this inline immediately, so it never conflicts
+   with the transition animation on user interaction. */
+.timeline-item.active .timeline-panel {
+    max-height: 1000px;
 }
 
 .timeline-panel-inner {
@@ -607,10 +665,9 @@ nav {
     border-top: none;
     border-bottom-left-radius: var(--radius-lg);
     border-bottom-right-radius: var(--radius-lg);
-    padding: var(--space-6) var(--space-6) var(--space-6);
+    padding: var(--space-6) var(--space-6) var(--space-5);
 }
 
-/* Reuse existing exp-bullets inside timeline */
 .timeline-panel .exp-bullets {
     display: flex;
     flex-direction: column;
@@ -620,6 +677,7 @@ nav {
 .timeline-panel .exp-bullets li {
     display: flex;
     gap: var(--space-3);
+    font-family: var(--font-mono);
     color: var(--color-text-secondary);
     font-size: var(--text-sm);
     line-height: 1.6;
@@ -639,9 +697,9 @@ nav {
     background: rgba(255, 119, 0, 0.1);
     border: 1px solid rgba(255, 119, 0, 0.3);
     border-radius: var(--radius-full);
+    font-family: var(--font-mono);
     font-size: var(--text-xs);
     color: var(--color-accent);
-    font-family: var(--font-mono);
 }
 
 /* =====================
@@ -687,12 +745,14 @@ nav {
 }
 
 .exp-company {
+    font-family: var(--font-mono);
     color: var(--color-accent);
     font-size: var(--text-base);
     margin-top: var(--space-1);
 }
 
 .exp-date {
+    font-family: var(--font-mono);
     font-size: var(--text-xs);
     color: var(--color-text-secondary);
     border: 1px solid var(--color-border);
@@ -709,9 +769,9 @@ nav {
     background: rgba(200, 245, 66, 0.1);
     border: 1px solid rgba(200, 245, 66, 0.3);
     border-radius: var(--radius-full);
+    font-family: var(--font-mono);
     font-size: var(--text-xs);
     color: var(--color-accent);
-    font-family: var(--font-mono);
 }
 
 .exp-bullets {
@@ -724,6 +784,7 @@ nav {
 .exp-bullets li {
     display: flex;
     gap: var(--space-3);
+    font-family: var(--font-mono);
     color: var(--color-text-secondary);
     font-size: var(--text-sm);
     line-height: 1.6;
@@ -843,6 +904,7 @@ nav {
 }
 
 .project-subtitle {
+    font-family: var(--font-mono);
     font-size: var(--text-xs);
     color: var(--color-accent);
     letter-spacing: 0.1em;
@@ -850,6 +912,7 @@ nav {
 }
 
 .project-desc {
+    font-family: var(--font-mono);
     color: var(--color-text-secondary);
     font-size: var(--text-sm);
     line-height: 1.7;
@@ -863,6 +926,7 @@ nav {
 }
 
 .tag {
+    font-family: var(--font-mono);
     padding: var(--space-1) var(--space-3);
     background: var(--color-tag-bg);
     border: 1px solid var(--color-border);
@@ -875,6 +939,7 @@ nav {
     display: inline-flex;
     align-items: center;
     gap: var(--space-2);
+    font-family: var(--font-mono);
     color: var(--color-accent);
     font-size: var(--text-sm);
     transition: gap var(--transition-fast);
@@ -900,6 +965,7 @@ nav {
     border: 1px solid var(--color-border);
     background: var(--color-surface);
     color: var(--color-text-secondary);
+    font-family: var(--font-mono);
     font-size: var(--text-md);
     cursor: pointer;
     display: grid;
@@ -976,6 +1042,7 @@ nav {
 }
 
 .resume-meta {
+    font-family: var(--font-mono);
     font-size: var(--text-xs);
     color: var(--color-text-secondary);
     margin-top: var(--space-1);
@@ -1000,6 +1067,7 @@ nav {
 }
 
 .contact-info-sub {
+    font-family: var(--font-mono);
     color: var(--color-text-secondary);
     font-size: var(--text-sm);
     line-height: 1.8;
@@ -1063,12 +1131,13 @@ nav {
 }
 
 .contact-link-sub {
+    font-family: var(--font-mono);
     font-size: var(--text-xs);
     color: var(--color-text-secondary);
-    font-family: var(--font-mono);
 }
 
 .contact-link-arrow {
+    font-family: var(--font-mono);
     font-size: var(--text-base);
     color: var(--color-border);
     transition: color var(--transition-fast), transform var(--transition-fast);
@@ -1088,9 +1157,9 @@ nav {
     background: rgba(255, 119, 0, 0.06);
     border: 1px solid rgba(255, 119, 0, 0.2);
     border-radius: var(--radius-full);
+    font-family: var(--font-mono);
     font-size: var(--text-xs);
     color: var(--color-text-secondary);
-    font-family: var(--font-mono);
     width: fit-content;
 }
 
@@ -1119,7 +1188,6 @@ nav {
     overflow: hidden;
 }
 
-/* Ambient glow top-right */
 .contact-form-card::before {
     content: '';
     position: absolute;
@@ -1185,7 +1253,6 @@ nav {
     color: var(--color-text-primary);
     outline: none;
     transition: border-color var(--transition-fast), box-shadow var(--transition-fast), background var(--transition-fast);
-    /* Make room for the floating label */
     padding-top: 1.4rem;
 }
 
@@ -1201,12 +1268,11 @@ nav {
     top: 50%;
     left: var(--space-4);
     transform: translateY(-50%);
+    font-family: var(--font-mono);
     font-size: var(--text-sm);
     color: var(--color-text-secondary);
-    font-family: var(--font-mono);
     pointer-events: none;
     transition: top 0.2s ease, font-size 0.2s ease, color 0.2s ease, transform 0.2s ease;
-    /* For textarea, align to top */
 }
 
 .form-field--textarea .form-label {
@@ -1214,7 +1280,6 @@ nav {
     transform: none;
 }
 
-/* When input has content (not-placeholder-shown) or is focused — float up */
 .form-input:focus ~ .form-label,
 .form-input:not(:placeholder-shown) ~ .form-label {
     top: 0.45rem;
@@ -1267,6 +1332,7 @@ nav {
 }
 
 .form-status {
+    font-family: var(--font-mono);
     font-size: var(--text-sm);
     color: var(--color-text-secondary);
     font-style: italic;
@@ -1336,7 +1402,6 @@ nav {
     pointer-events: none;
 }
 
-
 /* =====================
     FOOTER
 ===================== */
@@ -1353,10 +1418,16 @@ footer {
     gap: var(--space-4);
 }
 
-.footer-copy,
-.footer-made {
+.footer-copy {
+    font-family: var(--font-mono);
     font-size: var(--text-xs);
-    color: var(--color-text-muted);
+    color: var(--color-text-secondary);
+}
+
+.footer-made {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--color-text-secondary);
 }
 
 .footer-made span {
