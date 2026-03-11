@@ -2,7 +2,7 @@
  * Conrad Ang Portfolio — Contact Form
  * Uses EmailJS to send messages directly from the browser.
  *
- * SETUP (Reminder):
+ * SETUP:
  *  1. Go to https://www.emailjs.com and sign in.
  *  2. Create an Email Service (Gmail, Outlook, etc.) → copy the Service ID.
  *  3. Create an Email Template with these variables:
@@ -15,7 +15,7 @@
  *  5. Your Public Key is already initialised in the <head> of index.html.
  */
 
-const EMAILJS_SERVICE_ID  = 'service_u92qnyo';   // ← replace
+const EMAILJS_SERVICE_ID = 'service_u92qnyo';   // ← replace
 const EMAILJS_TEMPLATE_ID = 'template_jevzfm5';  // ← replace
 
 /* ------------------------------------------------------------------ */
@@ -38,7 +38,7 @@ function setLoading(isLoading) {
   btn.disabled = isLoading;
   btn.textContent = isLoading ? 'Sending…' : 'Send Message →';
   btn.style.opacity = isLoading ? '0.7' : '';
-  btn.style.cursor  = isLoading ? 'not-allowed' : '';
+  btn.style.cursor = isLoading ? 'not-allowed' : '';
 }
 
 function validateEmail(email) {
@@ -60,8 +60,8 @@ function shakeField(id) {
 /* ------------------------------------------------------------------ */
 
 async function sendEmail() {
-  const name    = getField('cf-name');
-  const email   = getField('cf-email');
+  const name = getField('cf-name');
+  const email = getField('cf-email');
   const subject = getField('cf-subject');
   const message = getField('cf-message');
 
@@ -93,10 +93,10 @@ async function sendEmail() {
 
   try {
     await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
-      from_name:  name,
+      from_name: name,
       from_email: email,
-      subject:    subject,
-      message:    message,
+      subject: subject,
+      message: message,
     });
 
     setStatus("✓ Message sent!", 'status-success');
