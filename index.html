@@ -104,8 +104,45 @@
 
       <div class="timeline">
 
-        <!-- Node 1 -->
+        <!-- Node -->
         <div class="timeline-item active" data-index="0">
+          <div class="timeline-left">
+            <div class="timeline-node">
+              <div class="timeline-node-ring"></div>
+              <div class="timeline-node-dot"></div>
+            </div>
+            <div class="timeline-connector"></div>
+          </div>
+          <div class="timeline-right">
+            <button class="timeline-trigger" aria-expanded="true" aria-controls="exp-panel-0">
+              <div class="timeline-trigger-inner">
+                <div class="timeline-meta">
+                  <span class="timeline-date">Apr 2026 - Present</span>
+                </div>
+                <div class="timeline-role">Studio Support</div>
+                <div class="timeline-company">Terabyte Interactive</div>
+              </div>
+              <span class="timeline-chevron" aria-hidden="true">↓</span>
+            </button>
+            <div class="timeline-panel" id="exp-panel-0" role="region">
+              <div class="timeline-panel-inner">
+                <ul class="exp-bullets">
+                  <li>Digital Marketing and Data Analysis of different SEO and GEO data including SemRush, AthenaHQ,
+                    GA4, Google Ads, Meta Ads and LookerStudio Dashboards</li>
+                  <li>Providing ongoing support for Terabyte's internal studio operations, including CMS content
+                    updates,
+                    workflow optimisations, and ad-hoc technical assistance.</li>
+                  <li>Collaborating with cross-functional teams to troubleshoot issues, implement improvements, and
+                    ensure
+                    smooth project delivery.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Node -->
+        <div class="timeline-item" data-index="1">
           <div class="timeline-left">
             <div class="timeline-node">
               <div class="timeline-node-ring"></div>
@@ -147,8 +184,8 @@
           </div>
         </div>
 
-        <!-- Node 2 -->
-        <div class="timeline-item" data-index="1">
+        <!-- Node -->
+        <div class="timeline-item" data-index="2">
           <div class="timeline-left">
             <div class="timeline-node">
               <div class="timeline-node-ring"></div>
@@ -181,8 +218,8 @@
           </div>
         </div>
 
-        <!-- Node 3 -->
-        <div class="timeline-item" data-index="2">
+        <!-- Node -->
+        <div class="timeline-item" data-index="3">
           <div class="timeline-left">
             <div class="timeline-node">
               <div class="timeline-node-ring"></div>
@@ -235,23 +272,77 @@
       <div class="projects-carousel" id="projectsCarousel">
 
         <div class="project-card">
+          <div class="project-icon">🌐</div>
+          <div>
+            <div class="project-subtitle">UoA WDCC · Team Project</div>
+            <div class="project-title">KAC</div>
+          </div>
+          <p class="project-desc">Worked in a team of 9 to develop a new website for Kiwi Asian Club (UoA). Implemented
+            full-stack image management enabling admin uploads and replacements via the UI using React, Node/Express
+            APIs, MongoDB, and AWS S3 with tag-based mapping to UI components.</p>
+          <div class="project-tags">
+            <span class="tag">MongoDB</span>
+            <span class="tag">Express</span>
+            <span class="tag">React</span>
+            <span class="tag">Node.js</span>
+            <span class="tag">AWS S3</span>
+            <span class="tag">ClickUp</span>
+          </div>
+          <a href="https://github.com/UoaWDCC/kac" class="project-link" target="_blank">View on GitHub -></a>
+        </div>
+
+        <div class="project-card">
+          <div class="project-icon">💡</div>
+          <div>
+            <div class="project-subtitle">ProjectMagmaNZ · Team Project</div>
+            <div class="project-title">Lighthouse Leaders</div>
+          </div>
+          <p class="project-desc">Frontend lead for a team of 5 developing a survey platform for Lighthouse Leaders NZ,
+            enabling professionals to track youth wellbeing and programme impact. Built responsive survey flows,
+            navigation, and reusable React components for a scalable, consistent user experience.</p>
+          <div class="project-tags">
+            <span class="tag">React</span>
+            <span class="tag">CSS</span>
+            <span class="tag">Figma</span>
+          </div>
+          <a href="https://github.com/ProjectMagmaNZ/PM-2026-S1-LIGHTHOUSE-LEADERS" class="project-link"
+            target="_blank">View on GitHub -></a>
+        </div>
+
+        <div class="project-card">
+          <div class="project-icon">✖️</div>
+          <div>
+            <div class="project-subtitle">Personal Project · FULL STACK</div>
+            <div class="project-title">Tic Tac Toe</div>
+          </div>
+          <p class="project-desc">Built a tic-tac-toe game with C#, React, and ASP.NET, combining a clean frontend
+            experience with backend support for game logic and structure.</p>
+          <div class="project-tags">
+            <span class="tag">C#</span>
+            <span class="tag">React</span>
+            <span class="tag">ASP.NET</span>
+            <span class="tag">TypeScript</span>
+          </div>
+          <a href="https://github.com/conradangwz/tic-tac-toe" class="project-link" target="_blank">View on GitHub
+            -></a>
+        </div>
+
+        <div class="project-card">
           <div class="project-icon">🏓</div>
           <div>
             <div class="project-subtitle">Personal Project · MERN Stack</div>
             <div class="project-title">Private Coach Booking System</div>
           </div>
           <p class="project-desc">Developed a MERN full-stack booking platform enabling table tennis athletes to
-            schedule
-            private coaching sessions. Built a React-based frontend for session browsing and booking, with a
-            Node.js/Express API handling authentication, scheduling, and booking logic. Designed a MongoDB database
-            to manage users, coaching sessions, and bookings, ensuring efficient data retrieval and scalable session
+            schedule private coaching sessions. Built a React-based frontend for session browsing and booking, with a
+            Node.js/Express API handling authentication, scheduling, and booking logic. Designed a MongoDB database to
+            manage users, coaching sessions, and bookings, ensuring efficient data retrieval and scalable session
             management.</p>
           <div class="project-tags">
             <span class="tag">MongoDB</span>
             <span class="tag">Express</span>
             <span class="tag">React</span>
             <span class="tag">Node.js</span>
-
           </div>
           <!-- <a href="https://github.com/UOA-SE325-S2-2025/se325-assignment-01-conradangwz" class="project-link"
             target="_blank">View on GitHub →</a> -->
@@ -263,7 +354,7 @@
             <div class="project-subtitle">SOFTENG 306 · Brownfield Dev</div>
             <div class="project-title">Customer and Loan Management System</div>
           </div>
-          <p class="project-desc">Brownfield development on Countrywide Bank's legacy mainframe — Java backend with a
+          <p class="project-desc">Brownfield development on Countrywide Bank's legacy mainframe - Java backend with a
             redesigned JavaFX GUI. Built in a team of four using Agile practices, MVC architecture, and Git workflow.
             Delivered improved business logic integration with a polished, client-aligned interface.</p>
           <div class="project-tags">
@@ -275,7 +366,7 @@
             <span class="tag">Agile</span>
           </div>
           <a href="https://github.com/The-University-of-Auckland/project-1-project-1-team-10" class="project-link"
-            target="_blank">View on GitHub →</a>
+            target="_blank">View on GitHub -></a>
         </div>
 
         <div class="project-card">
@@ -296,7 +387,7 @@
             <span class="tag">SQL</span>
           </div>
           <a href="https://github.com/UOA-SE325-S2-2025/se325-assignment-01-conradangwz" class="project-link"
-            target="_blank">View on GitHub →</a>
+            target="_blank">View on GitHub -></a>
         </div>
 
         <div class="project-card">
@@ -305,53 +396,25 @@
             <div class="project-subtitle">Side Projects</div>
             <div class="project-title">Various Side Projects</div>
           </div>
-          <p class="project-desc">As I've grown as a Software Engineer. I have been regularly practicing and
-            improving my coding skills through various small side projects. They were also enjoyable to develop and
-            experiment with. Examples include a
-            Java-based Maze Solver, a C-based Sudoku Solver, a Python file organiser, and a Python slot machine.</p>
+          <p class="project-desc">As I've grown as a Software Engineer, I have been regularly practicing and improving
+            my coding skills through various small side projects. They were also enjoyable to develop and experiment
+            with. Examples include a Java-based Maze Solver, a C-based Sudoku Solver, a Python file organiser, and a
+            Python slot machine.</p>
           <div class="project-tags">
             <span class="tag">Java</span>
             <span class="tag">C</span>
             <span class="tag">Python</span>
           </div>
-          <a href="https://github.com/conradangwz" class="project-link" target="_blank">View them on my GitHub →</a>
-        </div>
-
-        <div class="project-card">
-          <div class="project-icon">🚧</div>
-          <div>
-            <div class="project-subtitle">Stay Tuned</div>
-            <div class="project-title">More Coming Soon</div>
-          </div>
-          <p class="project-desc">I'm still working on some cool projects, stay tuned!</p>
-          <div class="project-tags">
-            <span class="tag">...</span>
-          </div>
-          <!--<a href="https://github.com" class="project-link" target="_blank">View on GitHub →</a>-->
-        </div>
-
-        <div class="project-card">
-          <div class="project-icon">🚧</div>
-          <div>
-            <div class="project-subtitle">This one is to show off the carousel lol</div>
-            <div class="project-title">More Coming Soon!!</div>
-          </div>
-          <p class="project-desc">I'm still working on some cool projects, stay tuned!</p>
-          <div class="project-tags">
-            <span class="tag">...</span>
-          </div>
-          <!--<a href="https://github.com" class="project-link" target="_blank">View on GitHub →</a>-->
+          <a href="https://github.com/conradangwz" class="project-link" target="_blank">View them on my GitHub -></a>
         </div>
       </div>
     </div>
-
     <div class="container">
       <div class="carousel-controls">
         <button class="carousel-btn" id="carouselPrev" aria-label="Previous project">←</button>
         <div class="carousel-dots" id="carouselDots"></div>
         <button class="carousel-btn" id="carouselNext" aria-label="Next project">→</button>
       </div>
-    </div>
     </div>
   </section>
 
@@ -367,7 +430,7 @@
           <div class="resume-icon">📄</div>
           <div>
             <div class="resume-filename">Conrad_Ang_Resume.pdf</div>
-            <div class="resume-meta">Last updated March 2026</div>
+            <div class="resume-meta">Last updated May 2026</div>
           </div>
         </div>
         <a href="Conrad_Ang_Resume.pdf" download="Conrad_Ang_Resume.pdf" class="btn btn-primary">Download PDF ↓</a>
